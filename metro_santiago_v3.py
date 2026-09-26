@@ -4,75 +4,75 @@ from heapq import heappush, heappop
 LINEAS = {
 
     "L1": [
-        "San Pablo","Neptuno","Pajaritos","Las Rejas","Ecuador",
-        "San Alberto Hurtado","Universidad de Santiago",
-        "Estación Central","Unión Latinoamericana","República",
-        "Los Héroes","La Moneda","Universidad de Chile",
-        "Santa Lucía","Universidad Católica","Baquedano",
-        "Salvador","Manuel Montt","Pedro de Valdivia",
-        "Los Leones","Tobalaba","El Golf","Alcántara",
-        "Escuela Militar","Manquehue",
-        "Hernando de Magallanes","Los Dominicos"
+        "San Pablo", "Neptuno", "Pajaritos", "Las Rejas", "Ecuador",
+        "San Alberto Hurtado", "Universidad de Santiago",
+        "Estación Central", "Unión Latinoamericana", "República",
+        "Los Héroes", "La Moneda", "Universidad de Chile",
+        "Santa Lucía", "Universidad Católica", "Baquedano",
+        "Salvador", "Manuel Montt", "Pedro de Valdivia",
+        "Los Leones", "Tobalaba", "El Golf", "Alcántara",
+        "Escuela Militar", "Manquehue",
+        "Hernando de Magallanes", "Los Dominicos"
     ],
 
     "L2": [
-        "Vespucio Norte","Zapadores","Dorsal","Einstein",
-        "Cementerios","Cerro Blanco","Patronato",
-        "Puente Cal y Canto","Santa Ana","Los Héroes",
-        "Toesca","Parque O'Higgins","Rondizzoni",
-        "Franklin","El Llano","San Miguel",
-        "Lo Vial","Departamental","Ciudad del Niño",
-        "Lo Ovalle","El Parrón","La Cisterna"
+        "Vespucio Norte", "Zapadores", "Dorsal", "Einstein",
+        "Cementerios", "Cerro Blanco", "Patronato",
+        "Puente Cal y Canto", "Santa Ana", "Los Héroes",
+        "Toesca", "Parque O'Higgins", "Rondizzoni",
+        "Franklin", "El Llano", "San Miguel",
+        "Lo Vial", "Departamental", "Ciudad del Niño",
+        "Lo Ovalle", "El Parrón", "La Cisterna"
     ],
 
     "L3": [
-        "Plaza Quilicura","Lo Cruzat","Ferrocarril",
-        "Los Libertadores","Cardenal Caro","Vivaceta",
-        "Conchalí","Plaza Chacabuco","Hospitales",
-        "Puente Cal y Canto","Plaza de Armas",
-        "Universidad de Chile","Parque Almagro",
-        "Matta","Irarrázaval","Monseñor Eyzaguirre",
-        "Ñuñoa","Chile España","Villa Frei",
-        "Plaza Egaña","Fernando Castillo Velasco"
+        "Plaza Quilicura", "Lo Cruzat", "Ferrocarril",
+        "Los Libertadores", "Cardenal Caro", "Vivaceta",
+        "Conchalí", "Plaza Chacabuco", "Hospitales",
+        "Puente Cal y Canto", "Plaza de Armas",
+        "Universidad de Chile", "Parque Almagro",
+        "Matta", "Irarrázaval", "Monseñor Eyzaguirre",
+        "Ñuñoa", "Chile España", "Villa Frei",
+        "Plaza Egaña", "Fernando Castillo Velasco"
     ],
 
     "L4": [
-        "Tobalaba","Cristóbal Colón","Francisco Bilbao",
-        "Príncipe de Gales","Simón Bolívar",
-        "Plaza Egaña","Los Orientales","Grecia",
-        "Los Presidentes","Quilín","Las Torres",
-        "Macul","Vicuña Mackenna","Vicente Valdés"
+        "Tobalaba", "Cristóbal Colón", "Francisco Bilbao",
+        "Príncipe de Gales", "Simón Bolívar",
+        "Plaza Egaña", "Los Orientales", "Grecia",
+        "Los Presidentes", "Quilín", "Las Torres",
+        "Macúl", "Vicuña Mackenna", "Vicente Valdés"
     ],
 
     "L4A": [
-        "Vicuña Mackenna","Santa Julia",
-        "La Granja","Santa Rosa",
-        "San Ramón","La Cisterna"
+        "Vicuña Mackenna", "Santa Julia",
+        "La Granja", "Santa Rosa",
+        "San Ramón", "La Cisterna"
     ],
 
     "L5": [
-        "Plaza de Maipú","Santiago Bueras",
-        "Del Sol","Monte Tabor","Las Parcelas",
-        "Laguna Sur","Barrancas","Pudahuel",
-        "San Pablo","Lo Prado","Blanqueado",
-        "Gruta de Lourdes","Quinta Normal",
-        "Cumming","Santa Ana","Plaza de Armas",
-        "Bellas Artes","Baquedano",
-        "Parque Bustamante","Santa Isabel",
-        "Irarrázaval","Ñuble",
-        "Rodrigo de Araya","Carlos Valdovinos",
-        "Camino Agrícola","San Joaquín",
-        "Pedrero","Mirador",
+        "Plaza de Maipú", "Santiago Bueras",
+        "Del Sol", "Monte Tabor", "Las Parcelas",
+        "Laguna Sur", "Barrancas", "Pudahuel",
+        "San Pablo", "Lo Prado", "Blanqueado",
+        "Gruta de Lourdes", "Quinta Normal",
+        "Cumming", "Santa Ana", "Plaza de Armas",
+        "Bellas Artes", "Baquedano",
+        "Parque Bustamante", "Santa Isabel",
+        "Irarrázaval", "Ñuble",
+        "Rodrigo de Araya", "Carlos Valdovinos",
+        "Camino Agrícola", "San Joaquín",
+        "Pedrero", "Mirador",
         "Bellavista de La Florida",
         "Vicente Valdés"
     ],
 
     "L6": [
-        "Cerrillos","Lo Valledor",
+        "Cerrillos", "Lo Valledor",
         "Pedro Aguirre Cerda",
-        "Franklin","Bio Bio",
-        "Ñuble","Estadio Nacional",
-        "Ñuñoa","Inés de Suárez",
+        "Franklin", "Bio Bio",
+        "Ñuble", "Estadio Nacional",
+        "Ñuñoa", "Inés de Suárez",
         "Los Leones"
     ]
 }
@@ -94,6 +94,7 @@ for linea, estaciones in LINEAS.items():
         grafo[a].append((b, linea))
         grafo[b].append((a, linea))
 
+
 def buscar_estacion(nombre):
 
     nombre = nombre.lower().strip()
@@ -104,6 +105,7 @@ def buscar_estacion(nombre):
             return estacion
 
     return None
+
 
 def buscar_ruta(origen, destino):
 
@@ -151,7 +153,8 @@ def buscar_ruta(origen, destino):
 
     return None
 
-def obtener_linea(a,b):
+
+def obtener_linea(a, b):
 
     for vecino, linea in grafo[a]:
 
@@ -159,6 +162,7 @@ def obtener_linea(a,b):
             return linea
 
     return None
+
 
 def mostrar_ruta(ruta):
 
@@ -172,7 +176,7 @@ def mostrar_ruta(ruta):
         a = ruta[i]
         b = ruta[i+1]
 
-        linea = obtener_linea(a,b)
+        linea = obtener_linea(a, b)
 
         if linea != linea_actual:
 
@@ -193,6 +197,7 @@ def mostrar_ruta(ruta):
     print("Paradas:", estaciones)
     print("Transbordos:", transbordos)
     print("Tiempo estimado:", tiempo, "minutos")
+
 
 print("\nMETRO DE SANTIAGO\n")
 
