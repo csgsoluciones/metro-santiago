@@ -1,5 +1,12 @@
+# Buscador Metro de Santiago
+# Proyecto realizado para encontrar rutas entre estaciones del metro de Santiago de Chile
+# Autores: Daisy Nicol Malagón Ramírez y Guillermo Andrés Carrillo Sánchez
+
 from collections import deque
 from heapq import heappush, heappop
+
+# Diccionario que almacena todas las líneas del Metro de Santiago
+# cada línea es una lista de estaciones en orden de recorrido
 
 LINEAS = {
 
@@ -76,9 +83,15 @@ LINEAS = {
         "Los Leones"
     ]
 }
+
+# Grafo que representará la red del metro.
+# Cada estación se conectará con sus estaciones vecinas
+
 grafo = {}
 
 for linea, estaciones in LINEAS.items():
+
+    # Recorre las estaciones dos a dos para crear los enlaces
 
     for i in range(len(estaciones)-1):
 
@@ -91,8 +104,13 @@ for linea, estaciones in LINEAS.items():
         if b not in grafo:
             grafo[b] = []
 
+# Relación bidireccional entre estaciones consecutivas
+
         grafo[a].append((b, linea))
         grafo[b].append((a, linea))
+
+# Busca una estación por nombre ignorando mayúsculas,
+# minúsculas y espacios adicionales
 
 
 def buscar_estacion(nombre):
@@ -106,8 +124,14 @@ def buscar_estacion(nombre):
 
     return None
 
+# Encuentra la mejor ruta entre origen y destino.
+# La prioridad es minimizar los transbordos y luego
+# minimizar la cantidad de estaciones recorridas
+
 
 def buscar_ruta(origen, destino):
+
+    # Cola de prioridad utilizada por el algoritmo de búsqueda
 
     cola = []
 
@@ -116,6 +140,8 @@ def buscar_ruta(origen, destino):
         cola,
         (0, 0, origen, [origen], None)
     )
+
+# Conjunto para evitar procesar estados repetidos
 
     visitados = set()
 
@@ -137,6 +163,8 @@ def buscar_ruta(origen, destino):
 
             nuevo_transbordo = transbordos
 
+# Si cambia la línea actual, se cuenta un transbordo
+
             if linea_actual is not None and linea != linea_actual:
                 nuevo_transbordo += 1
 
@@ -153,6 +181,9 @@ def buscar_ruta(origen, destino):
 
     return None
 
+# Determina la línea a la que pertenece el tramo
+# entre dos estaciones consecutivas
+
 
 def obtener_linea(a, b):
 
@@ -163,6 +194,9 @@ def obtener_linea(a, b):
 
     return None
 
+# Muestra la ruta encontrada indicando cambios de línea,
+# cantidad de estaciones, transbordos y tiempo estimado
+
 
 def mostrar_ruta(ruta):
 
@@ -171,12 +205,16 @@ def mostrar_ruta(ruta):
 
     print("\nRUTA ENCONTRADA\n")
 
+# Recorre la ruta estación por estación
+
     for i in range(len(ruta)-1):
 
         a = ruta[i]
         b = ruta[i+1]
 
         linea = obtener_linea(a, b)
+
+# Detecta cambios de línea para informar transbordos
 
         if linea != linea_actual:
 
@@ -191,12 +229,21 @@ def mostrar_ruta(ruta):
         linea_actual = linea
 
     estaciones = len(ruta)-1
+
+    # Estimación simple:
+# 2 minutos por estación recorrida y
+# 4 minutos adicionales por transbordo
+
     tiempo = estaciones * 2 + transbordos * 4
 
     print("\n------------------")
     print("Paradas:", estaciones)
     print("Transbordos:", transbordos)
     print("Tiempo estimado:", tiempo, "minutos")
+
+# Programa principal.
+# Solicita origen y destino al usuario,
+# calcula la mejor ruta y muestra los resultados
 
 
 print("\nMETRO DE SANTIAGO\n")
@@ -216,6 +263,8 @@ if destino is None:
     quit()
 
 ruta = buscar_ruta(origen, destino)
+
+# Si existe una ruta válida se muestra al usuario
 
 if ruta:
     mostrar_ruta(ruta)
