@@ -8,11 +8,18 @@
 # =====================================================
 
 # Librerías
+# Importamos pandas para crear tablas de datos
+# Importamos numpy que nos genera números aleatorios y realiza cálculos numéricos
 import pandas as pd
 import numpy as np
 
+# Ahora importamos las librerías de sklearn para dividir el conjunto de datos, crear el modelo de árbol de decisión y evaluar el modelo
 from sklearn.model_selection import train_test_split
+
+# importamos DecisionTreeClassifier para crear el modelo de árbol de decisión
 from sklearn.tree import DecisionTreeClassifier
+
+# Importamos las métricas de sklearn para evaluar el modelo
 from sklearn.metrics import (
     accuracy_score,
     confusion_matrix,
@@ -23,6 +30,7 @@ from sklearn.metrics import (
 # PRESENTACIÓN DEL PROGRAMA
 # -----------------------------------------------------
 
+# Mostramos el nombre de la actividad y el tema a tratar
 print("Actividad N.° 3 - Aprendizaje Supervisado")
 print("Metro de Santiago")
 print("-" * 50)
@@ -35,6 +43,7 @@ print("-" * 50)
 np.random.seed(42)
 
 # Generar 100 registros de pasajeros entre 100 y 999
+# Es una de las líneas más importantes del código, ya que nos permite generar un conjunto de datos aleatorio para simular la cantidad de pasajeros en el metro de Santiago.
 cantidad_pasajeros = np.random.randint(100, 1000, 100)
 
 # Generar 100 horas aleatorias entre 0 y 23
@@ -65,16 +74,17 @@ print(datos.head())
 # DEFINICIÓN DE VARIABLES
 # -----------------------------------------------------
 
-# Variables predictoras
+# Selecciona las variables que usará el modelo para hacer la predicción. En este caso, se seleccionan las columnas "Cantidad_Pasajeros" y "Hora_Dia" del DataFrame "datos" y se asignan a la variable X.
 X = datos[["Cantidad_Pasajeros", "Hora_Dia"]]
 
-# Variable objetivo
+# Variable objetivo: Será lo que el modelo intentará predecir. En este caso, se selecciona la columna "Demora" del DataFrame "datos" y se asigna a la variable y.
 y = datos["Demora"]
 
 # -----------------------------------------------------
 # DIVISIÓN DEL CONJUNTO DE DATOS
 # -----------------------------------------------------
 
+# significa que se dividirá el conjunto de datos en un conjunto de entrenamiento y un conjunto de prueba. El conjunto de entrenamiento se utilizará para entrenar el modelo, mientras que el conjunto de prueba se utilizará para evaluar su rendimiento.
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
@@ -94,6 +104,7 @@ modelo.fit(X_train, y_train)
 # PREDICCIÓN
 # -----------------------------------------------------
 
+# significa que se utilizará el modelo entrenado para hacer predicciones sobre el conjunto de prueba. El resultado de la predicción se almacenará en la variable y_pred.
 y_pred = modelo.predict(X_test)
 
 # -----------------------------------------------------
