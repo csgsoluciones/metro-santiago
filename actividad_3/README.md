@@ -91,8 +91,10 @@ actividad_3
 
 ## Autores
 
-Daisy Nicol Malagón Ramírez
+* Daisy Nicol Malagón Ramírez
 
-Guillermo Andrés Carrillo Sánchez
+* Guillermo Andrés Carrillo Sánchez
 
 ## Repositorio
+
+https://github.com/csgsoluciones/metro-santiago.git
