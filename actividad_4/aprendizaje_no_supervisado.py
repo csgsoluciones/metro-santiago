@@ -75,9 +75,6 @@ print(df[df["Grupo"] == 0])
 print("\nRegistros del Grupo 1:")
 print(df[df["Grupo"] == 1])
 
-print("\nRegistros del Grupo 1:")
-print(df[df["Grupo"] == 1])
-
 # -----------------------------------------------------
 # ANÁLISIS DE LOS GRUPOS
 # -----------------------------------------------------
