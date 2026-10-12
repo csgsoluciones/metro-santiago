@@ -1,100 +1,107 @@
 # Sistema de Predicción de Demoras - Metro de Santiago
 
-Proyecto desarrollado en Python para aplicar técnicas de Aprendizaje Supervisado utilizando un Árbol de Decisión, con el objetivo de predecir posibles demoras en el Metro de Santiago según la cantidad de pasajeros y la hora del día.
-
-## Descripción
-Este proyecto genera un conjunto de datos simulado relacionado con la operación del Metro de Santiago y utiliza Machine Learning para identificar patrones que permitan predecir la ocurrencia de demoras.
-
-El sistema fue desarrollado utilizando:
-
-Python
-Pandas
-NumPy
-Scikit-Learn
+Proyecto desarrollado en Python que aplica aprendizaje supervisado, mediante un Árbol de Decisión, para predecir posibles demoras en el Metro de Santiago según la cantidad de pasajeros y la hora del día. Continúa el proyecto de transporte masivo de las actividades anteriores.
 
 ## Objetivo
 
-Desarrollar un modelo de aprendizaje supervisado capaz de predecir posibles demoras en el servicio de Metro de Santiago utilizando la cantidad de pasajeros y la hora del día como variables de entrada.
+Desarrollar un modelo de aprendizaje supervisado capaz de predecir si existirá una demora en el servicio, utilizando como variables de entrada la cantidad de pasajeros y la hora del día.
 
-## Dataset Utilizado
+## Fuentes de datos
 
-El conjunto de datos fue generado de forma automática mediante NumPy y contiene:
+No se utilizó una fuente de datos real. Por esa razón se desarrolló un conjunto de datos simulado que representa una muestra de la operación del Metro. El dataset se genera automáticamente al ejecutar el script, con NumPy y una semilla fija (`np.random.seed(42)`), por lo que los resultados son reproducibles en cualquier computador.
 
-Cantidad de pasajeros
-Hora del día
-Estado de demora
-Las variables utilizadas son:
+## Descripción de los datos
 
-Variable	Descripción
-Cantidad_Pasajeros	Número de pasajeros registrados
-Hora_Dia	Hora del día entre 0 y 23
-Demora	0 = No existe demora, 1 = Existe demora
-La regla utilizada para generar la variable objetivo fue:
+El conjunto contiene 100 registros: 60 sin demora y 40 con demora.
 
+| Variable | Tipo | Descripción |
+|---|---|---|
+| Cantidad_Pasajeros | Numérica (100 a 999) | Número de pasajeros registrados |
+| Hora_Dia | Numérica (0 a 23) | Hora del día |
+| Demora | Categórica (0 o 1) | 0 = no existe demora, 1 = existe demora. Es la variable a predecir |
+
+La variable objetivo se generó con la siguiente regla:
+
+```python
 if pasajeros > 600:
     demora.append(1)
 else:
     demora.append(0)
-Tecnologías Utilizadas
-Python 3.11
-Pandas
-NumPy
-Scikit-Learn
-Modelo Utilizado
-El proyecto utiliza el algoritmo:
+```
 
-Árbol de Decisión (DecisionTreeClassifier)
-Este algoritmo aprende patrones presentes en los datos de entrenamiento y posteriormente genera predicciones sobre nuevos casos ingresados por el usuario.
+## Tecnologías utilizadas
 
-División de Datos
-Los datos fueron divididos en:
+- Python 3.12
+- Pandas
+- NumPy
+- Scikit-Learn
 
-70% Entrenamiento
-30% Prueba
-Mediante:
+## Modelo utilizado
 
-train_test_split()
-Métricas de Evaluación
-Para evaluar el rendimiento del modelo se utilizaron:
+Se utilizó un Árbol de Decisión (`DecisionTreeClassifier`), que aprende patrones a partir de los datos de entrenamiento y luego genera predicciones sobre casos nuevos ingresados por el usuario.
 
-Accuracy Score
-Matriz de Confusión
-Classification Report
-Resultados obtenidos:
+## División de datos
 
-Accuracy: 100%
-Precision: 100%
-Recall: 100%
-F1-Score: 100%
-Ejemplo de Uso
-Ejemplo de entrada:
+Mediante `train_test_split()` los datos se dividieron en:
 
-Ingrese cantidad de pasajeros: 900
-Ingrese la hora (0-23): 18
-Salida:
+- 70% para entrenamiento (70 registros)
+- 30% para prueba (30 registros)
 
-Resultado de la predicción
-Es probable que exista demora.
-Otro ejemplo:
+## Métricas de evaluación
 
-Ingrese cantidad de pasajeros: 100
-Ingrese la hora (0-23): 13
-Salida:
+Se utilizaron tres métricas:
 
-Resultado de la predicción
-No se espera demora.
-Estructura del Proyecto
-actividad_3
-│
+- Accuracy Score
+- Matriz de Confusión
+- Classification Report
+
+## Resultados obtenidos
+
+- Precisión del modelo: 1.00
+- Matriz de confusión: `[[19 0] [0 11]]`. Los 30 registros de prueba fueron clasificados correctamente (19 sin demora y 11 con demora).
+
+Como la variable Demora se generó con una regla fija basada únicamente en la cantidad de pasajeros, el árbol aprende esa regla con un solo corte y alcanza una precisión perfecta. Con datos reales no se esperaría un resultado tan exacto.
+
+## Cómo ejecutar
+
+Instalar las librerías (una sola vez):
+
+```
+pip install pandas numpy scikit-learn
+```
+
+Ejecutar el programa desde la carpeta `actividad_3`:
+
+```
+python aprendizaje_supervisado.py
+```
+
+El programa muestra los primeros registros y las métricas del modelo, y luego solicita por teclado la cantidad de pasajeros y la hora para realizar una predicción.
+
+## Pruebas realizadas
+
+| Pasajeros | Hora | Resultado esperado | Resultado obtenido |
+|---|---|---|---|
+| 100 | 14 | Sin demora | No se espera demora |
+| 900 | 18 | Con demora | Es probable que exista demora |
+| 50 | 8 | Sin demora | No se espera demora |
+| 900 | 3 | Con demora | Es probable que exista demora |
+
+En las pruebas se observa que, con estos datos simulados, el resultado depende de la cantidad de pasajeros y no de la hora: 900 pasajeros producen demora tanto a las 18 como a las 3.
+
+## Estructura del proyecto
+
+```
+actividad_3/
 ├── aprendizaje_supervisado.py
 └── README.md
+```
 
-## Autores
+## Autores y aportes
 
-* Daisy Nicol Malagón Ramírez
-
-* Guillermo Andrés Carrillo Sánchez
+- Daisy Nicol Malagón Ramírez
+- Guillermo Andrés Carrillo Sánchez
 
 ## Repositorio
 
-https://github.com/csgsoluciones/metro-santiago.git
+https://github.com/csgsoluciones/metro-santiago
